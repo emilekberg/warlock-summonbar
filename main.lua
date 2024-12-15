@@ -1,9 +1,12 @@
 local buttonSize = 32
 local buttonPadding = 2
 local healthstones = {"Create Healthstone (Minor)", "Create Healthstone (Lesser)", "Create Healthstone", "Create Healthstone (Greater)", "Create Healthstone (Major)"}
-local spells = {"Ritual Of Summoning", healthstones, "Summon Imp", "Summon Voidwalker", "Summon Succubus", "Summon Felhunter"}
+local spells = {"Ritual Of Summoning", "Create Soulstone", healthstones, "Summon Imp", "Summon Voidwalker", "Summon Succubus", "Summon Felhunter"}
 local frame = CreateFrame("Frame", "Backdrop", UIParent, "BackdropTemplate")
 
+frame:SetMovable(true)
+frame:EnableMouse(true)
+frame:RegisterForDrag("LeftButton")
 frame:SetPoint("BOTTOMRIGHT")
 frame:SetHeight(buttonSize)
 frame:SetScript("OnDragStart", function(self)
