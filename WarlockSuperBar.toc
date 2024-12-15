@@ -1,0 +1,6 @@
+## Interface: 80200
+## Title: Warlock Summon Bar! 
+## Author: Emil Ekberg
+## Version: 1.0
+
+main.lua
