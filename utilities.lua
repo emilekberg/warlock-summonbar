@@ -73,7 +73,7 @@ function CreateButtonSpellcast(spellinfo, parentFrame, offset)
         GameTooltip:Hide()
     end)
 
-    local cooldown = CreateFrame("Cooldown", spellinfo.name .. "cooldown", frame, "CooldownFrameTemplate")
-    cooldown:SetAllPoints()
+    -- local cooldown = CreateFrame("Cooldown", spellinfo.name .. "cooldown", button, "CooldownFrameTemplate")
+    -- cooldown:SetAllPoints()
     button:Show()
 end
