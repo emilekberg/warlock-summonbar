@@ -6,18 +6,29 @@ function IsPlayerWarlock()
     local CLASSID_WARLOCK = 9;
     return id == CLASSID_WARLOCK
 end
-function GetHighestLevelHealthstone()
-    local healthstones = {"Create Healthstone (Minor)", "Create Healthstone (Lesser)", "Create Healthstone", "Create Healthstone (Greater)", "Create Healthstone (Major)"}
+function GetHighestSpellLevelOfNamedSpell(spells)
     local spellinfo
-    for i = 1, #healthstones do
+    for i = 1, #spells do
         -- highestRankSpell = spell[spellIndex]
-        local tmpSpellInfo = C_Spell.GetSpellInfo(healthstones[i])
+        local tmpSpellInfo = C_Spell.GetSpellInfo(spells[i])
         if tmpSpellInfo ~= nil and IsSpellKnown(tmpSpellInfo.spellID) then
             spellinfo = tmpSpellInfo
         end
     end
+    if spellinfo == nil then
+        return nil
+    end
     return spellinfo.name
 end
+function GetHighestLevelHealthstone()
+    local spells = {"Create Healthstone (Minor)", "Create Healthstone (Lesser)", "Create Healthstone", "Create Healthstone (Greater)", "Create Healthstone (Major)"}
+    return GetHighestSpellLevelOfNamedSpell(spells)
+end
+function GetHighestLevelSoulStone()
+    local spells = {"Create Soulstone (Minor)", "Create Soulstone (Lesser)", "Create Soulstone", "Create Soulstone (Greater)"}
+    return GetHighestSpellLevelOfNamedSpell(spells)
+end
+
 function CreateToggleButton(itemInfo, parentFrame)
     local button = CreateFrame("Button", "button", parentFrame, "BackdropTemplate")
     local overlayText = button:CreateFontString("ITEM_COUNT", "OVERLAY", "GameFontHighlight")
@@ -76,4 +87,8 @@ function CreateButtonSpellcast(spellinfo, parentFrame, offset)
     -- local cooldown = CreateFrame("Cooldown", spellinfo.name .. "cooldown", button, "CooldownFrameTemplate")
     -- cooldown:SetAllPoints()
     button:Show()
+    return button
+end
+function CreateButtonCallback(callback)
+
 end
